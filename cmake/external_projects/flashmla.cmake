@@ -51,6 +51,7 @@ if(FLASH_MLA_ARCHS)
     set(VLLM_FLASHMLA_GPU_FLAGS ${VLLM_GPU_FLAGS})
     list(APPEND VLLM_FLASHMLA_GPU_FLAGS "--expt-relaxed-constexpr" "--expt-extended-lambda" "--use_fast_math")
 
+
     set(FlashMLA_SOURCES
         ${flashmla_SOURCE_DIR}/csrc/torch_api.cpp
         ${flashmla_SOURCE_DIR}/csrc/pybind.cpp
@@ -60,10 +61,12 @@ if(FLASH_MLA_ARCHS)
         ${flashmla_SOURCE_DIR}/csrc/sm90/decode/sparse_fp8/splitkv_mla.cu
         ${flashmla_SOURCE_DIR}/csrc/sm90/prefill/sparse/fwd.cu
         ${flashmla_SOURCE_DIR}/csrc/sm100/decode/sparse_fp8/splitkv_mla.cu
+        ${flashmla_SOURCE_DIR}/csrc/sm100/prefill/dense/fmha_cutlass_fwd_sm100.cu
+        ${flashmla_SOURCE_DIR}/csrc/sm100/prefill/dense/fmha_cutlass_bwd_sm100.cu
+        ${flashmla_SOURCE_DIR}/csrc/sm100/prefill/sparse/fwd.cu
         ${flashmla_SOURCE_DIR}/csrc/sm120/decode/sparse_fp8/splitkv_mla.cu
         ${flashmla_SOURCE_DIR}/csrc/sm120/prefill/dense/fmha_cutlass_fwd_sm120.cu
         ${flashmla_SOURCE_DIR}/csrc/sm120/prefill/dense/fmha_cutlass_bwd_sm120.cu
-        ${flashmla_SOURCE_DIR}/csrc/sm100/prefill/sparse/fwd.cu
         ${flashmla_SOURCE_DIR}/csrc/sm120/prefill/sparse/fwd.cu
     )
 
